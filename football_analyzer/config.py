@@ -17,35 +17,57 @@ LEAGUE_CITIES = {
     "芬超": ["Helsinki", "Tampere", "Turku", "Oulu"],
     "瑞超": ["Stockholm", "Gothenburg", "Malmo", "Uppsala"],
     "韩职": ["Seoul", "Busan", "Incheon"],
-    "世界杯": [],  # 世界杯城市不固定
+    "世界杯": [],
 }
+
+# 联赛稳定性系数 (0-1, 越高越稳定可预测)
+# 基于各联赛历史爆冷率、球队实力差距、主场优势等因素
+LEAGUE_STABILITY = {
+    "世界杯": 0.85,  # 大赛强队发挥稳定，但淘汰赛有不确定性
+    "欧冠": 0.82,
+    "欧联": 0.75,
+    "英超": 0.78,
+    "德甲": 0.80,
+    "西甲": 0.80,
+    "意甲": 0.78,
+    "法甲": 0.76,
+    "挪超": 0.72,  # 主场优势明显，强弱较分明
+    "芬超": 0.78,  # 头部球队碾压明显，可预测性高
+    "瑞超": 0.70,  # 竞争较激烈
+    "韩职": 0.55,  # 实力差距小，容易爆冷
+    "日职": 0.58,  # 类似韩职，爆冷率偏高
+    "澳超": 0.52,  # 非常不稳定
+    "美职": 0.50,  # 非常不稳定
+    "中超": 0.55,
+    "世预赛": 0.72,
+}
+# 未列入的联赛默认值
+DEFAULT_LEAGUE_STABILITY = 0.60
 
 # 分析权重配置
 ANALYSIS_WEIGHTS = {
-    "odds_probability": 0.25,      # 赔率隐含概率
-    "team_form": 0.20,             # 近期状态
-    "h2h_record": 0.15,            # 历史交锋
-    "home_advantage": 0.10,        # 主场优势
-    "rank_strength": 0.10,         # 排名实力
-    "weather_impact": 0.05,        # 天气影响
-    "schedule_fatigue": 0.05,      # 赛程疲劳
-    "motivation": 0.10,            # 比赛动机
+    "odds_probability": 0.25,
+    "team_form": 0.20,
+    "h2h_record": 0.15,
+    "home_advantage": 0.10,
+    "rank_strength": 0.10,
+    "weather_impact": 0.05,
+    "schedule_fatigue": 0.05,
+    "motivation": 0.10,
 }
 
 # 投注策略配置
 BETTING_CONFIG = {
     "total_budget": 100.0,
-    "ticket1_ratio": 0.50,   # 保本票占比
-    "ticket2_ratio": 0.40,   # 中赔票占比
-    "ticket3_ratio": 0.10,   # 高倍票占比
-    
-    "ticket1_max_legs": 2,   # 保本票最多串几场
-    "ticket2_max_legs": 3,   # 中赔票最多串几场
-    "ticket3_max_legs": 5,   # 高倍票最多串几场
-    
-    "ticket1_min_confidence": 0.75,  # 保本票最低置信度
-    "ticket2_min_confidence": 0.60,  # 中赔票最低置信度
-    "ticket3_min_confidence": 0.45,  # 高倍票最低置信度
+    "ticket1_ratio": 0.60,
+    "ticket2_ratio": 0.30,
+    "ticket3_ratio": 0.10,
+    "ticket1_max_legs": 2,
+    "ticket2_max_legs": 3,
+    "ticket3_max_legs": 5,
+    "ticket1_min_confidence": 0.75,
+    "ticket2_min_confidence": 0.60,
+    "ticket3_min_confidence": 0.45,
 }
 
 # 请求配置
